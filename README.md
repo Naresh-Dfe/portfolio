@@ -2,6 +2,8 @@
 
 A responsive developer portfolio built with TanStack Start, React, TypeScript, Tailwind CSS, and Lucide. It includes project showcases, work history, education, direct contact options, and a hosted resume.
 
+[Live portfolio](https://naresh-kumar-portfolio.nareshkumar48.workers.dev)
+
 ## Development
 
 Use Node.js 24 and npm.
@@ -43,7 +45,7 @@ Stop the Worker preview before rebuilding on Windows to release its file handles
 
 ## Content updates
 
-Edit `src/data/portfolio.ts` for biography, skills, projects, employment, education, and contact details. Work history uses `YYYY-MM` dates; a null end date means the role is current. Project status distinguishes professional work, concepts, and work in progress.
+Edit `src/data/portfolio.ts` for biography, skills, projects, employment, education, and contact details. Work history uses `YYYY-MM` dates; a null end date means the role is current. Project status distinguishes professional work, concepts, and work in progress. Each case study includes product context, ownership, engineering decisions, reliability/access considerations, delivered capabilities, and an optional simplified architecture map. Contribution highlights link directly to the relevant project ID.
 
 Add screenshots under `public/projects/` and provide the image path, alt text, width, and height in the project record. Existing visuals are clearly labeled illustrations. Keep missing project URLs and GitHub links null until real destinations are available.
 

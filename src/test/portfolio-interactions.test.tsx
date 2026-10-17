@@ -24,7 +24,7 @@ describe("portfolio interactions", () => {
   });
   it("renders resume-backed work, education and in-progress project status", () => {
     render(<Portfolio />);
-    expect(screen.getByText("Wcart Admin Console")).toBeInTheDocument();
+    expect(screen.getByText("Wcart Commerce Platform")).toBeInTheDocument();
     expect(screen.getByText("M.Sc. Computer Science")).toBeInTheDocument();
     expect(screen.getByText("Jan 2024 – Sep 2026")).toBeInTheDocument();
     expect(screen.getByText("Jun 2023 – Dec 2023")).toBeInTheDocument();
@@ -79,12 +79,24 @@ describe("portfolio interactions", () => {
   });
   it("opens a professional case study without requiring a product login or missing external link", () => {
     render(<Portfolio />);
-    fireEvent.click(screen.getByRole("button", { name: "View Wcart Admin Console case study" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "View Wcart Commerce Platform case study" }),
+    );
     const dialog = screen.getByRole("dialog");
     expect(dialog).toHaveTextContent("Full-stack product developer");
-    expect(dialog).toHaveTextContent("Contributions");
+    expect(dialog).toHaveTextContent("Engineering decisions");
     expect(dialog).toHaveTextContent("requires sign-in");
     expect(within(dialog).queryByRole("link", { name: /Visit product/ })).toBeNull();
     expect(within(dialog).queryByRole("button", { name: /Project link/ })).toBeNull();
+  });
+  it("opens the flagship case study from contribution evidence", () => {
+    render(<Portfolio />);
+    fireEvent.click(
+      screen.getByRole("button", { name: "Explore my contributions: Payment integrations" }),
+    );
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toHaveTextContent("Shared payment-provider interface");
+    expect(dialog).toHaveTextContent("Wcart: simplified capability map");
+    expect(dialog).toHaveTextContent("not an exact network topology");
   });
 });

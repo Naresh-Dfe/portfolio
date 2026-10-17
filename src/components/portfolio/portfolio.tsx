@@ -28,6 +28,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { portfolio, type Project } from "@/data/portfolio";
+import { CaseStudyContent } from "./case-study-content";
 import { ProjectImage } from "./project-image";
 import { safeExternalUrl } from "@/lib/site";
 import sculpture from "@/assets/developer-sculpture.jpg";
@@ -259,6 +260,17 @@ export function Portfolio() {
                 <ArrowDownToLine /> Download Resume <span>PDF</span>
               </Button>
             )}
+            {safeExternalUrl(portfolio.sourceUrl) && (
+              <Button variant="link" className="resume-button source-link" asChild>
+                <a
+                  href={safeExternalUrl(portfolio.sourceUrl)!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github /> View source &amp; tests <ArrowUpRight />
+                </a>
+              </Button>
+            )}
             <div className="hero-bottom">
               <a href="#about" className="scroll-link">
                 <span>
@@ -267,6 +279,33 @@ export function Portfolio() {
                 SCROLL TO EXPLORE
               </a>
               <span className="hero-coordinate">{portfolio.copy.heroTagline}</span>
+            </div>
+          </div>
+        </section>
+        <section className="contribution-section" aria-labelledby="contributions-title">
+          <div className="site-container">
+            <p className="eyebrow">SELECTED CONTRIBUTIONS</p>
+            <h2 id="contributions-title">Production work, at a glance.</h2>
+            <div className="contribution-grid">
+              {portfolio.highlights.map((item) => (
+                <button
+                  key={item.label}
+                  className="contribution-card"
+                  onClick={() =>
+                    setSelectedProject(
+                      portfolio.projects.find((project) => project.id === item.projectId) ?? null,
+                    )
+                  }
+                  aria-label={`Explore my contributions: ${item.label}`}
+                >
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                  <p>{item.detail}</p>
+                  <small>
+                    Explore the case study <ArrowUpRight size={14} />
+                  </small>
+                </button>
+              ))}
             </div>
           </div>
         </section>
@@ -368,7 +407,10 @@ export function Portfolio() {
             />
             <div className="projects-grid">
               {[...portfolio.projects, ...portfolio.draftProjects].map((project) => (
-                <article className="project-card" key={project.id}>
+                <article
+                  className={`project-card${project.featured ? " featured-project" : ""}`}
+                  key={project.id}
+                >
                   <Button
                     variant="ghost"
                     className="project-image-button"
@@ -624,20 +666,7 @@ export function Portfolio() {
             <DialogDescription>{selectedProject?.description}</DialogDescription>
           </DialogHeader>
           {selectedProject && <ProjectImage project={selectedProject} />}
-          {selectedProject && (
-            <>
-              <h3>My role</h3>
-              <p className="dialog-note">{selectedProject.role}</p>
-              <h3>Contributions</h3>
-            </>
-          )}
-          <p className="dialog-note">
-            {selectedProject?.status === "concept"
-              ? "This is a concept preview, not a screenshot of a completed project. Verified details, screenshots, and links have not been supplied."
-              : selectedProject?.details}
-          </p>
-          <h3>Technologies</h3>
-          <p>{selectedProject?.technologies.join(" · ")}</p>
+          {selectedProject && <CaseStudyContent project={selectedProject} />}
           {selectedProject?.requiresLogin && (
             <p className="dialog-note">
               This application requires sign-in. This case study describes my contributions without
