@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   Braces,
   Check,
-  ChevronRight,
   Code2,
   Database,
   Github,
@@ -401,14 +400,13 @@ export function Portfolio() {
                         ? "Concept / Details Pending"
                         : project.status === "in-progress"
                           ? "In progress · Personal project"
-                          : "Professional project"}
+                          : "Professional case study"}
                       <Button
                         variant="ghost"
-                        size="icon"
-                        aria-label={`Open ${project.title} details`}
+                        aria-label={`View ${project.title} case study`}
                         onClick={() => setSelectedProject(project)}
                       >
-                        <ArrowUpRight />
+                        View case study <ArrowUpRight />
                       </Button>
                     </div>
                   </div>
@@ -620,18 +618,32 @@ export function Portfolio() {
                 ? "CONCEPT / DETAILS PENDING"
                 : selectedProject?.status === "in-progress"
                   ? "PERSONAL PROJECT / IN PROGRESS"
-                  : "PROFESSIONAL PROJECT"}
+                  : "PROFESSIONAL CASE STUDY"}
             </p>
             <DialogTitle>{selectedProject?.title}</DialogTitle>
             <DialogDescription>{selectedProject?.description}</DialogDescription>
           </DialogHeader>
           {selectedProject && <ProjectImage project={selectedProject} />}
+          {selectedProject && (
+            <>
+              <h3>My role</h3>
+              <p className="dialog-note">{selectedProject.role}</p>
+              <h3>Contributions</h3>
+            </>
+          )}
           <p className="dialog-note">
             {selectedProject?.status === "concept"
               ? "This is a concept preview, not a screenshot of a completed project. Verified details, screenshots, and links have not been supplied."
               : selectedProject?.details}
           </p>
+          <h3>Technologies</h3>
           <p>{selectedProject?.technologies.join(" · ")}</p>
+          {selectedProject?.requiresLogin && (
+            <p className="dialog-note">
+              This application requires sign-in. This case study describes my contributions without
+              requiring access to the product.
+            </p>
+          )}
           {safeExternalUrl(selectedProject?.githubUrl ?? null) && (
             <a
               href={safeExternalUrl(selectedProject?.githubUrl ?? null)!}
@@ -641,25 +653,20 @@ export function Portfolio() {
               View repository
             </a>
           )}
-          <Button
-            onClick={() => {
-              if (safeExternalUrl(selectedProject?.url ?? null))
-                window.open(
-                  safeExternalUrl(selectedProject?.url ?? null)!,
-                  "_blank",
-                  "noopener,noreferrer",
-                );
-              else {
-                setSelectedProject(null);
-                missing(
-                  "Project link coming soon",
-                  "A verified project link has not been added yet.",
-                );
-              }
-            }}
-          >
-            Project link <ChevronRight />
-          </Button>
+          {safeExternalUrl(selectedProject?.url ?? null) && (
+            <Button asChild>
+              <a
+                href={safeExternalUrl(selectedProject?.url ?? null)!}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {selectedProject?.requiresLogin
+                  ? "Visit product · Login required"
+                  : "Visit product"}{" "}
+                <ArrowUpRight />
+              </a>
+            </Button>
+          )}
         </DialogContent>
       </Dialog>
     </>

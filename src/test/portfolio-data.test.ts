@@ -44,7 +44,7 @@ describe("resume-backed portfolio content", () => {
     expect(
       portfolio.experienceEntries.map((entry) => [entry.company, entry.startDate, entry.endDate]),
     ).toEqual([
-      ["Webnexs", "2024-01", null],
+      ["Webnexs", "2024-01", "2026-09"],
       ["Webnexs", "2023-06", "2023-12"],
     ]);
     expect(portfolio.experienceEntries[0]?.achievements.join(" ")).toContain("10 payment gateway");

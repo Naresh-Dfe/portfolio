@@ -26,7 +26,7 @@ describe("portfolio interactions", () => {
     render(<Portfolio />);
     expect(screen.getByText("Wcart Admin Console")).toBeInTheDocument();
     expect(screen.getByText("M.Sc. Computer Science")).toBeInTheDocument();
-    expect(screen.getByText("Jan 2024 – Present")).toBeInTheDocument();
+    expect(screen.getByText("Jan 2024 – Sep 2026")).toBeInTheDocument();
     expect(screen.getByText("Jun 2023 – Dec 2023")).toBeInTheDocument();
     expect(screen.getByText("In progress · Personal project")).toBeInTheDocument();
     expect(screen.queryByText("Work history details pending")).toBeNull();
@@ -76,5 +76,15 @@ describe("portfolio interactions", () => {
     fireEvent.error(screen.getByRole("img", { name: "Project screenshot" }));
     expect(screen.queryByRole("img")).toBeNull();
     expect(screen.getByText(/ILLUSTRATION · SCREENSHOT NOT PROVIDED/)).toBeInTheDocument();
+  });
+  it("opens a professional case study without requiring a product login or missing external link", () => {
+    render(<Portfolio />);
+    fireEvent.click(screen.getByRole("button", { name: "View Wcart Admin Console case study" }));
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toHaveTextContent("Full-stack product developer");
+    expect(dialog).toHaveTextContent("Contributions");
+    expect(dialog).toHaveTextContent("requires sign-in");
+    expect(within(dialog).queryByRole("link", { name: /Visit product/ })).toBeNull();
+    expect(within(dialog).queryByRole("button", { name: /Project link/ })).toBeNull();
   });
 });

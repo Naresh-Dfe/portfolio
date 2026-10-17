@@ -2,6 +2,8 @@
   id: string;
   title: string;
   category: string;
+  role: string;
+  requiresLogin: boolean;
   description: string;
   preview: "storefront" | "console" | "platform" | "crm" | "ai";
   status: "verified" | "in-progress" | "concept";
@@ -65,7 +67,7 @@ export const portfolio: PortfolioData = {
   introduction:
     "I’m Naresh Kumar G, a Full Stack Developer with 3+ years of experience shipping production React and Node.js features. I build SaaS applications, microservices, and AI-powered product experiences end to end.",
   about:
-    "At Webnexs, I build and maintain large Next.js applications backed by Express microservices, owning both the interfaces and their REST APIs. My work spans multi-tenant ecommerce, CRM and deployment automation, payment integrations, and internal developer platforms.",
+    "Previously at Webnexs, I built and maintained large Next.js applications backed by Express microservices, owning both the interfaces and their REST APIs. My work spanned multi-tenant ecommerce, CRM and deployment automation, payment integrations, and internal developer platforms.",
   resumeUrl: "https://pub-cd02c25bf25a476d9698eae9ef7d371e.r2.dev/NareshKumar_G_Resume.pdf",
   email: "nareshkumarg984@gmail.com",
   linkedin: "https://www.linkedin.com/in/nareshkumar48",
@@ -183,6 +185,8 @@ export const portfolio: PortfolioData = {
     {
       id: "01",
       title: "Wcart Admin Console",
+      role: "Full-stack product developer",
+      requiresLogin: true,
       category: "Multi-tenant ecommerce",
       preview: "console",
       description:
@@ -199,6 +203,8 @@ export const portfolio: PortfolioData = {
     {
       id: "02",
       title: "Wcart Storefront",
+      role: "Full-stack product developer",
+      requiresLogin: false,
       category: "Customer-facing commerce",
       preview: "storefront",
       description:
@@ -215,6 +221,8 @@ export const portfolio: PortfolioData = {
     {
       id: "03",
       title: "Wcart Commerce Services",
+      role: "Core backend developer",
+      requiresLogin: true,
       category: "Microservices, payments & AI",
       preview: "platform",
       description:
@@ -241,6 +249,8 @@ export const portfolio: PortfolioData = {
     {
       id: "04",
       title: "Webnexs Baseapp",
+      role: "Primary developer",
+      requiresLogin: true,
       category: "CRM & deployment automation",
       preview: "crm",
       description:
@@ -257,6 +267,8 @@ export const portfolio: PortfolioData = {
     {
       id: "05",
       title: "Internal DevOps & Work Management",
+      role: "Full-stack developer",
+      requiresLogin: true,
       category: "Developer platform",
       preview: "console",
       description:
@@ -284,6 +296,8 @@ export const portfolio: PortfolioData = {
     {
       id: "06",
       title: "Whisky Cask Client Platform",
+      role: "Sole developer and direct client contact",
+      requiresLogin: true,
       category: "Investment & retail operations",
       preview: "crm",
       description:
@@ -308,6 +322,8 @@ export const portfolio: PortfolioData = {
     {
       id: "07",
       title: "Starlight Shop",
+      role: "Personal project",
+      requiresLogin: false,
       category: "Personal project · in progress",
       preview: "storefront",
       description:
@@ -337,18 +353,18 @@ export const portfolio: PortfolioData = {
       role: "Product Developer – Full Stack (React / Node.js)",
       company: "Webnexs",
       startDate: "2024-01",
-      endDate: null,
+      endDate: "2026-09",
       employmentType: null,
       location: "Chennai, India",
       description:
         "End-to-end product development across ecommerce SaaS, AI features, CRM automation, client platforms, and internal developer tools.",
       responsibilities: [
-        "Build and maintain Wcart’s Next.js admin console and customer-facing storefront, with reusable components, shared utilities, and performance profiling.",
-        "Develop tenant-scoped Express services with REST contracts, validation, RS256 JWT single sign-on, JWKS rotation, and server-side role-based access control.",
-        "Build Cartana’s tool-calling AI assistant, encrypted tenant-key management, usage ledger, and scoped MCP server.",
-        "Develop Baseapp’s CRM, payment, provisioning, DNS, and deployment automation across Wcart and Flicknexs.",
-        "Collaborate with designers and QA, write unit and integration tests, review code, and troubleshoot cross-service production defects.",
-        "Manage cPanel and CWP deployments and contribute to the move toward containerized, Kubernetes-orchestrated infrastructure.",
+        "Built and maintained Wcart’s Next.js admin console and customer-facing storefront, with reusable components, shared utilities, and performance profiling.",
+        "Developed tenant-scoped Express services with REST contracts, validation, RS256 JWT single sign-on, JWKS rotation, and server-side role-based access control.",
+        "Built Cartana’s tool-calling AI assistant, encrypted tenant-key management, usage ledger, and scoped MCP server.",
+        "Developed Baseapp’s CRM, payment, provisioning, DNS, and deployment automation across Wcart and Flicknexs.",
+        "Collaborated with designers and QA, wrote unit and integration tests, reviewed code, and troubleshot cross-service production defects.",
+        "Managed cPanel and CWP deployments and contributed to the move toward containerized, Kubernetes-orchestrated infrastructure.",
       ],
       technologies: [
         "React",
@@ -391,13 +407,13 @@ export const portfolio: PortfolioData = {
     skillsDescription:
       "Technologies used across production SaaS products, client platforms, and personal projects.",
     projectsDescription:
-      "Selected professional work and an ongoing personal project. Visuals are illustrative; project screenshots and public links have not been supplied.",
+      "Case studies of my contributions to professional products, plus an ongoing personal project. Some applications require sign-in; explore the work here without needing product access. Visuals are illustrations.",
     aboutLead: "I build products from interface to infrastructure.",
     aboutClosing:
       "I also build agentic AI features and MCP integrations, with tenant-aware authorization, encrypted credentials, and usage controls.",
     heroTagline: "REACT. NODE.JS. SAAS. APPLIED AI.",
     experienceDescription:
-      "From a Node.js internship to full-stack product development at Webnexs, building across the company’s SaaS products and internal platforms.",
+      "June 2023 to September 2026 at Webnexs, progressing from a Node.js internship to full-stack product development across SaaS products and internal platforms.",
     contactIntroduction:
       "Have a product to build or a full-stack opportunity to discuss? Get in touch by email, phone, or LinkedIn.",
   },
