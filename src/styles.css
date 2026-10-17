@@ -576,8 +576,9 @@ h2 {
 }
 .project-meta button {
   margin-left: auto;
-  width: 26px;
-  height: 26px;
+  height: auto;
+  padding: 6px 0 6px 10px;
+  font-size: 11px;
 }
 .placeholder-dot {
   width: 4px;
