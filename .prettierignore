@@ -1,0 +1,10 @@
+node_modules
+dist
+.output
+.vercel
+.vinxi
+.tanstack
+.nitro
+package-lock.json
+bun.lock
+src/routeTree.gen.ts
