@@ -38,7 +38,7 @@ describe("resume-backed portfolio content", () => {
     expect(portfolio.projects.find((project) => project.title === "Starlight Shop")?.status).toBe(
       "in-progress",
     );
-    expect(portfolio.github).toBeNull();
+    expect(portfolio.github).toBe("https://github.com/Naresh-Dfe");
   });
   it("preserves the employment dates and supported contributions", () => {
     expect(
@@ -56,5 +56,17 @@ describe("resume-backed portfolio content", () => {
     );
     const pdf = readFileSync(resolve(process.cwd(), "public/resume/NareshKumar_G_Resume.pdf"));
     expect(pdf.subarray(0, 5).toString()).toBe("%PDF-");
+  });
+  it("groups Wcart as one flagship and connects evidence to real case studies", () => {
+    expect(portfolio.projects.filter((project) => project.title.startsWith("Wcart"))).toHaveLength(
+      1,
+    );
+    expect(portfolio.projects).toHaveLength(5);
+    for (const highlight of portfolio.highlights)
+      expect(portfolio.projects.some((project) => project.id === highlight.projectId)).toBe(true);
+    for (const project of portfolio.projects) {
+      expect(project.caseStudy.ownership.length).toBeGreaterThan(0);
+      expect(project.caseStudy.decisions.length).toBeGreaterThan(0);
+    }
   });
 });
